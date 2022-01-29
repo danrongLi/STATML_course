@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[usenames,svgnames]{xcolor}
+\usepackage[pdftex,
+            colorlinks=true,
+            linkcolor=NavyBlue,
+            citecolor=NavyBlue,
+            urlcolor=NavyBlue,
+            breaklinks=true]{hyperref}
+
+\title{Solution for Homework \#0}
+
+\author{Danrong Li\\
+\href{dl4111@nyu.edu}{dl4111@nyu.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+
+
+\section*{Solution to Question 1}
+
+\subsection*{Solution to Part (a)}
+
+P(first bin is empty) = (1-P(first ball in first bin))$^m$
+
+= $(1-\frac{1}{n})^m$
+
+= $(\frac{n-1}{n})^m$
+
+\subsection*{Solution to Part (b)} 
+
+E(number of empty bins) = P(bin is empty) * n
+
+= $(\frac{n-1}{n})^m*n$
+
+\subsection*{Solution to Part (c)}
+
+$\lim_{n\to\infty}\frac{a_{n,n}}{n}=\lim_{n\to\infty}(\frac{n-1}{n})^n$ = f(n)
+
+$\ln$(f(n)) = $\lim_{n\to\infty}n*\ln(\frac{n-1}{n})$
+
+\hspace{1.3cm} = $\lim_{n\to\infty}\frac{\ln(\frac{n-1}{n})}{\frac{1}{n}}$
+
+\hspace{1.3cm} = $\lim_{n\to\infty}\frac{\frac{d}{dn}*(\ln(1-\frac{1}{n}))}{\frac{d}{dn}*\frac{1}{n}}$
+
+\hspace{1.3cm} = $\lim_{n\to\infty}\frac{\frac{1}{1-\frac{1}{n}}*(-1)*(-1)*n^{-2}}{-1*n^{-2}}$
+
+\hspace{1.3cm} = $\lim_{n\to\infty}\frac{1}{1-\frac{1}{n}}*(-1)$
+
+\hspace{1.3cm} = -1
+
+Thus we have $\ln$f(n) = -1, and it means that f(n) = $e^{-1}$
+
+Then it proves that $\lim_{n \to \infty} \frac{a_{n,n}}{n} = \frac{1}{e}$
+
+
+\section*{Solution to Question 2}
+
+\subsection*{Solution to Part (a)}
+
+    $AB$ is $O(n)$
+    
+    The shape of $AB$ is $d*d$, for each element in $AB$, it is calculated by a summation of n numbers, and each number is a product. So $AB$ would need $n*d*d$ calculations in total, and it can be concluded as $O(n)$.
+    
+    $BC$ is $O(n^2)$
+    
+    The shape of $BC$ is $n*n$, for each element in $BC$, it is calculated by a summation of d numbers, and each number is a product. So $BC$ would need $d*n*n$ calculations in total, and it can be concluded as $O(n^2)$.
+    
+    $CD$ is $O(n)$
+    
+    The shape of $CD$ is $d*1$, for each element in $CD$, it is calculated by a summation of n number, and each number is a product. So $CD$ would need $n*d$ calculations in total, and it can be concluded as $O(n)$.
+    
+    \subsection*{Solution to Part (b)}
+    
+    $ABCD$ is $O(n)$
+    
+    First calculate $AB$, which takes $O(n)$, and we have a matrix of shape $d*d$. Then we calculate $CD$, which takes $O(n)$, and we have a matrix of shape $d*1$. Then we multiply the resultant 2 matrices together to get the product of $ABCD$. This process would take $O(1)$ and the final product shape is $d*d$. 
+    
+
+
+\end{document}
