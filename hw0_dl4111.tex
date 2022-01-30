@@ -31,6 +31,8 @@
 
 \subsection*{Solution to Part (a)}
 
+\indent
+
 P(first bin is empty) = (1-P(first ball in first bin))$^m$
 
 = $(1-\frac{1}{n})^m$
@@ -39,11 +41,15 @@ P(first bin is empty) = (1-P(first ball in first bin))$^m$
 
 \subsection*{Solution to Part (b)} 
 
+\indent
+
 E(number of empty bins) = P(bin is empty) * n
 
 = $(\frac{n-1}{n})^m*n$
 
 \subsection*{Solution to Part (c)}
+
+\indent
 
 $\lim_{n\to\infty}\frac{a_{n,n}}{n}=\lim_{n\to\infty}(\frac{n-1}{n})^n$ = f(n)
 
@@ -68,6 +74,8 @@ Then it proves that $\lim_{n \to \infty} \frac{a_{n,n}}{n} = \frac{1}{e}$
 
 \subsection*{Solution to Part (a)}
 
+    \indent
+    
     $AB$ is $O(n)$
     
     The shape of $AB$ is $d*d$, for each element in $AB$, it is calculated by a summation of n numbers, and each number is a product. So $AB$ would need $n*d*d$ calculations in total, and it can be concluded as $O(n)$.
@@ -80,11 +88,13 @@ Then it proves that $\lim_{n \to \infty} \frac{a_{n,n}}{n} = \frac{1}{e}$
     
     The shape of $CD$ is $d*1$, for each element in $CD$, it is calculated by a summation of n number, and each number is a product. So $CD$ would need $n*d$ calculations in total, and it can be concluded as $O(n)$.
     
-    \subsection*{Solution to Part (b)}
+\subsection*{Solution to Part (b)}
+
+\indent
     
     $ABCD$ is $O(n)$
     
-    First calculate $AB$, which takes $O(n)$, and we have a matrix of shape $d*d$. Then we calculate $CD$, which takes $O(n)$, and we have a matrix of shape $d*1$. Then we multiply the resultant 2 matrices together to get the product of $ABCD$. This process would take $O(1)$ and the final product shape is $d*d$. 
+    First calculate $AB$, which takes $O(n)$, and we have a matrix of shape $d*d$. Then we calculate $CD$, which takes $O(n)$, and we have a matrix of shape $d*1$. Then we multiply the resultant 2 matrices together to get the product of $ABCD$, and this process would do calculations $d*d$ times, which can be concluded as $O(1)$ time complexity and the final product shape is $d*1$. Thus, this algorithm would have 3 steps which have the time complexity of $O(n)$, $O(n)$, $O(1)$ respectively, which makes the algorithm time complexity of $O(n)$.
     
 
 
