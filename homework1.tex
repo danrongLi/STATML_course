@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[usenames,svgnames]{xcolor}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage[pdftex,
+            colorlinks=true,
+            linkcolor=NavyBlue,
+            citecolor=NavyBlue,
+            urlcolor=NavyBlue,
+            breaklinks=true]{hyperref}
+
+
+% TikZ libraries
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{matrix}
+
+% Theorem-like environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+% Mathematical symbols and operators
+\newcommand{\N}{\mathbb{N}}  % Set of natural numbers
+\newcommand{\Z}{\mathbb{Z}}  % Set of integers
+\newcommand{\R}{\mathbb{R}}  % Set of real numbers
+
+\DeclareMathOperator{\Exp}{\mathbf{E}}
+
+\title{Statistical and Computational Foundations of Machine Learning \\
+NYU Tandon School of Engineering \\
+Spring 2022, Homework \#1
+}
+
+\author{D\'avid P\'al}
+
+\date{February 6, 2022}
+
+\begin{document}
+
+\maketitle
+
+Your solution must be turned \textbf{both} by email \textbf{and} as a printed
+hard-copy in class. Use LaTeX and submit your solution as a PDF file. Use the
+template provided on the course web page. Hand in your solutions on
+\textbf{February 20, 2022} at the beginning of the class. Email your solutions
+before the class as well. Send emails to
+\href{mailto:david.pal@nyu.edu}{david.pal@nyu.edu} with subject "Homework \#1".
+
+Collaboration is allowed, but solutions must be written independently. List the
+names of all collaborators in your solution. If you use external sources (books,
+online documents), list them in your solution as well. See homework policy on
+the course webpage for more details.
+
+\section*{Question 1}
+
+Let $X_1, X_2, \dots, X_n$ be independent random variables such that $X_1, X_2,
+\dots, X_n \in [0,1]$ with probability one. Let $p_i = \Exp[X_i]$,
+$i=1,2,\dots,n$. Let $p = \sum_{i=1}^n \frac{1}{n} p_i$. (Note that $p_1, p_2,
+\dots, p_n$ can be different.)
+
+\begin{enumerate}[(a)]
+
+\item \emph{(1 point)} Under an additional assumption that $X_i \in \{0,1\}$
+with probability one, prove that for any $i=1,2,\dots,n$ and any $s \in \R$,
+$$
+\Exp \left[ e^{sX_i} \right] = (1-p_i) + p_i e^s \: .
+$$
+
+\item \emph{(1 point)} Without the additional assumption from the previous part,
+prove that for any $i=1,2,\dots,n$ and any $s \in \R$,
+$$
+\Exp \left[ e^{sX_i} \right] \le (1-p_i) + p_i e^s \: .
+$$
+\emph{Hint: Upper bound $e^{sX_i}$ with a linear function. Draw a picture!}
+
+\item \emph{(1 point)} Prove that for any $s \in \R$,
+$$
+\Exp\left[ e^{s\sum_{i=1}^n X_i} \right] \le \left( (1-p) + p e^s \right)^n \: .
+$$
+\emph{Hint: Use a certain standard non-probabilistic inequality.}
+
+\item \emph{(1 point)} Using the Chernoff bounding technique, prove that for any
+$\epsilon > 0$,
+$$
+\Pr\left[\frac{1}{n}\sum_{i=1}^n X_i \ge p + \epsilon \right]
+\le
+\left( \left(\frac{p}{p+\epsilon}\right)^{p+\epsilon} \left(\frac{1-p}{1-p-\epsilon}\right)^{1-p-\epsilon}  \right)^n \: .
+$$
+
+\item \emph{(1 point)} Consider to right-hand side of the inequality in the
+previous part. Prove that
+$$
+\left( \left(\frac{p}{p+\epsilon}\right)^{p+\epsilon} \left(\frac{1-p}{1-p-\epsilon}\right)^{1-p-\epsilon}  \right)^n = e^{\displaystyle -nD(p+\epsilon, p)}
+$$
+where $D(u,v) = u \ln(u/v) + (1-u) \ln((1-u)/(1-v))$ and $0 \ln 0$ is
+interpreted as $0$. (The function $D(u,v)$ is the Kullback-Leibler divergence
+between Bernoulli distributions with parameters $u,v$.)
+
+\item \emph{(1 point)} Compare
+$$
+e^{\displaystyle -nD(p+\epsilon, p)}
+$$
+with Hoeffding's bound
+$$
+e^{\displaystyle -2n\epsilon^2}
+$$
+for $p=0.1$ and $\epsilon=0.4$. Which of the two bounds is ``better''?
+Explain why!
+
+\end{enumerate}
+
+\section*{Question 2}
+
+We would like to estimate generalization error of a binary classifier. Suppose
+we evaluate the classifier on a test set of size $n$, which we assume was
+sampled i.i.d. Let $K$ be the number of mistakes of the predictor ($0 \le K \le
+n$). Let $\delta \in (0,1)$ be a confidence parameter.
+
+\begin{enumerate}[(a)]
+
+\item \emph{(1 point)} Use Hoeffding's bound to construct a confidence interval
+$[L,R]$ for the generalization error. Prove that your confidence interval
+contains the generalization error with probability at least $1-\delta$. (The
+probability refers to the sampling of the test set.)
+
+\item \emph{(1 point)} Compute $L$ and $R$ for the case when $K=0$.
+
+\item \emph{(1 point)} Clopper–Pearson confidence interval $[L', R']$ is defined
+as
+\begin{align*}
+L' & = \inf \left\{ p \in [0,1] ~:~ \sum_{i=K}^n \binom{n}{i} p^i (1-p)^{n-i} > \delta/2 \right\} \: , \\
+R' & = \sup \left\{ p \in [0,1] ~:~ \sum_{i=0}^K \binom{n}{i} p^i (1-p)^{n-i} > \delta/2 \right\} \: .
+\end{align*}
+Clopper–Pearson confidence interval is hard to compute explicitly for general
+value of $K$. Compute explicitly the interval for the case $K=0$.
+
+\item \emph{(1 point)} Evaluate $[L,R]$ and $[L',R']$ for the case $n=50, K=0,
+\delta=0.05$.
+
+\item \emph{(2 points)} Prove that $[L',R'] \subset [L,R]$ for $K=0$,
+any $n \ge 1$, and any $\delta \in (0,1)$.
+
+\emph{Hint: This part is the hardest problem in Homework \#1. Find a suitable
+substitution so that the problem reduces to an inequality in a single variable.
+Plot both sides of the inequality so that you understand what you need to prove.}
+
+\end{enumerate}
+
+\section*{Question 3}
+
+Suppose that we are given a training set $((x_1,y_1), \ell_1), ((x_2,y_2),
+\ell_2), \dots, ((x_n, y_n), \ell_n)$ where $(x_1,y_1)$, $(x_2,y_2)$, \dots,
+$(x_n, y_n) \in \R^2$ are the features and $\ell_1, \ell_2, \dots, \ell_n \in
+\{0, 1\}$ are the labels. We would like to train a binary predictor
+$h_{a,b,c,d}:\R^2 \to \{0,1\}$ of the form
+$$
+h_{a,b,c,d}(x,y) =
+\begin{cases}
+1 & \text{if $a \le x \le b$ and $c \le y \le d$,} \\
+0 & \text{otherwise.}
+\end{cases}
+$$
+That is, $h_{a,b,c,d}(x,y)$ is the indicator function of an axis-aligned
+rectangle $[a,b] \times [c,d]$.
+
+
+\begin{enumerate}[(a)]
+
+\item \emph{(3 points)} Design an algorithm that receives the training set as
+input and outputs $a,b,c,d$ ($a \le b$, $c \le d$) such that $h_{a,b,c,d}$ has
+the minimum training error. In other words, give an algorithm that implements
+ERM/SEM for the class of rectangles. Provide either preudo-code or a detailed
+description of the algorithm. Justify the correctness of the algorithm. Give an
+upper bound of time complexity of the algorithm in terms of $n$. Use big-O
+notation! Try to come up with algorithm with as small time complexity as
+possible.
+
+\item \emph{(3 points)} Assume that the training set is such that there exists a
+$h_{a,b,c,d}$ with zero training error. Design an algorithm that receives a
+training set as input and outputs $a,b,c,d$ ($a \le b$, $c \le d$) such that
+$h_{a,b,c,d}$ has zero training error. In other words, give an algorithm that
+implements ERM/SEM for the class of rectangles. Provide either preudo-code or a
+detailed description of the algorithm. Justify the correctness of the algorithm.
+Give an upper bound of time complexity of the algorithm in terms of $n$. Use
+big-O notation! Try to come up with algorithm with as small time complexity as
+possible. Is your algorithm faster than the algorithm in the previous part?
+
+\end{enumerate}
+
+\end{document}

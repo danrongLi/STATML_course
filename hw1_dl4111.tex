@@ -1,0 +1,255 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[usenames,svgnames]{xcolor}
+\usepackage[pdftex,
+            colorlinks=true,
+            linkcolor=NavyBlue,
+            citecolor=NavyBlue,
+            urlcolor=NavyBlue,
+            breaklinks=true]{hyperref}
+
+\title{Solution for Homework \#1}
+
+\author{Danrong Li\\
+\href{dl4111@nyu.edu}{dl4111@nyu.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+
+
+\section*{Solution to Question 1}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+$P(X_i=1) = r_i$
+
+$P(X_i=0) = 1-r_i$
+
+$E[e^{s*X_i}] = r_i*e^{s}+(1-r_i)*e^{0}$
+$=r_i*e^(s)+(1-r_i)$
+
+$p_i = E[X_i] = r_i*1+(1-r_i)*0 = r_i$
+
+thus, $E[e^{s*X_i}] = p_i*e^{s}+(1-p_i)$
+
+
+\subsection*{Solution to Part (b)} 
+
+\indent
+
+since $f(X_i)=e^{s*X_i}$ is convex function, we have $\forall \alpha \in (0,1), \forall X_i \in [a,b]$, $f(X_i) \leq \alpha *f(a) + (1-\alpha)*f(b)$, setting $\alpha = \frac{b-X_i}{b-a}$
+
+$f(X_i) = e^{s*X_i} \leq \frac{b-X_i}{b-a} * f(a) + \frac{-a+X_i}{b-a} * f(b)$
+
+$E[e^{s*X_i}]\leq \frac{b-E[X-i]}{b-a}*f(a) + \frac{E[X-i]-a}{b-a}*f(b)$
+$=\frac{b-p_i}{b-a}*f(a) + \frac{p_i-a}{b-a}*f(b)$
+$=\frac{b-p_i}{b-a}*e^{s*a}+\frac{p_i-a}{b-a}*e^{s*b}$
+
+set b=1, a=0
+
+$E[e^{s*X_i}]\leq \frac{b-p_i}{b-a}*e^{s*a}+\frac{p_i-a}{b-a}*e^{s*b}$
+$=\frac{1-p_i}{1}*e^0+\frac{p_i-0}{1}*e^s$
+$=(1-p_i)+p_i*e^s$
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+$E[e^{s*\sum_{i=1}^{n}X_i}] = E[\prod_i^n e^{s*X_i}]$
+
+(by independence)
+$=\prod_i^n E[e^{s*X_i}]$
+
+(from (b))
+$\leq \prod_i^n (1-p_i+p_i*e^s)$
+
+$=(\sqrt[n]{\prod_i^n (1-p_i+p_i*e^s)})^n$
+
+(from AM-GM inequality)
+$\leq ((\sum_i^n 1-p_i+p_i*e^s)/n)^n$
+
+since we know that $p = \frac{1}{n}*\sum_i^n p_i$
+
+$=(1-p+p*e^s)^n$
+
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+we know that $p = \frac{1}{n}\sum_i^n p_i$ and $p_i = E[X_i]$
+
+the equation becomes:
+$P(\frac{1}{n}\sum_i^n X_i \geq \frac{1}{n}\sum_i^n E[X_i] + \epsilon)$
+
+$=P(\sum_i^n X_i \geq \sum_i^n E[X_i] + \epsilon*n)$
+
+$=P(e^{s*\sum_i X_i} \geq e^{s*\sum_i E[X_i]+s*\epsilon*n})$
+
+$\leq \frac{E[e^{s*\sum_i X_i}]}{e^{s*\sum_i E[X_i]+s*\epsilon*n}}$
+
+$=\frac{E[\prod_i e^{s*X_i}]}{(\prod_i e^{s*E[X_i]})*e^{s*\epsilon*n}}$
+
+$\leq \frac{(1-p+p*e^s)^n}{(\prod_i e^{s*E[X_i]})*e^{s*\epsilon*n}}$
+
+$=\frac{(1-p+p*e^s)^n}{(e^{s*p}*e^{s*\epsilon})^n}$
+
+$=e^{-n*(s*p+s*\epsilon)}*(1-p+p*e^s)^n$
+
+we need to find the $(e^s)^*$ that make the equation derivative = 0.
+
+after calculations, we got 
+$e^s = \frac{(p+\epsilon)(1-p)}{p*(1-p-\epsilon)}$
+
+then we substitute this $e^s$ back to the equation and some algebra, we get:
+
+$P[\frac{1}{n}*\sum_{i=1}^n X_i\geq p+\epsilon] \leq ((\frac{1-p}{1-p-\epsilon})^{1-p-\epsilon}*(\frac{p}{p+\epsilon})^{p+\epsilon})^n$
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+$e^{-n*D(p+\epsilon,p)} = e^{-n*((p+\epsilon)*\ln(\frac{p+\epsilon}{p}))+(1-p-\epsilon)*\ln(\frac{1-p-\epsilon}{1-p})}$
+
+$=e^{n*(p+\epsilon)*\ln(\frac{p}{p+\epsilon})}*e^{n*(1-p-\epsilon)*\ln(\frac{1-p}{1-p-\epsilon})}$
+
+$=(\frac{p}{p+\epsilon})^{n*(p+\epsilon)}*(\frac{1-p}{1-p-\epsilon})^{n*(1-p-\epsilon)}$
+
+$=((\frac{p}{p+\epsilon})^{p+\epsilon}*(\frac{1-p}{1-p-\epsilon})^{1-p-\epsilon})^n$
+
+\subsection*{Solution to Part (f)}
+
+\indent
+
+we can plug in the values into the 2 equations
+
+$e^{-n*D(p+\epsilon,p)} = (0.6)^n$
+
+$e^{-2*n*(\epsilon)^2} = (0.726)^n$
+
+from the results, we can see that the bound $e^{-n*D(p+\epsilon,p)}$ is better. This is because $0.6 < 0.726$, we want smaller and tighter bound. The thing that we are trying to bound is the deviation of the empirical average from the the expectation when the sample size is finite. If we have smaller and tighter bound, it means we are more confident that the deviation is not too large. From the calculation, the deviation was set into the equation of smaller than or equal to something, and we would like the right-hand-side something to be smaller and have a tighter bound.
+
+
+\section*{Solution to Question 2}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+set $Z_i = 1$ if $Z_i$ was wrong by the predictor, and set $Z_i = 0$, if otherwise.
+
+This way, we have $Z_i$, which is a sequence of i.i.d random variables. let $\overline{Z} = \frac{1}{n}\sum_{i=1}^{n} Z_i$, let $E[\overline{Z} = \mu]$, and $P(a\leq Z_i \leq b) = 1 \forall{i}$, then according to Hoeffding inequality, we know that
+
+$\forall{\epsilon >0}$,
+$P[|\frac{1}{n}\sum_{i=1}Z_i-\mu|>\epsilon]\leq 2* exp(\frac{-2*n*(\epsilon)^2}{(b-a)^2})$
+
+$P[|\overline{Z}-\mu|>\epsilon]\leq 2* exp(\frac{-2*n*(\epsilon)^2}{(b-a)^2})$
+
+$P[\overline{Z} \not\in [\mu-\epsilon, \mu+\epsilon]]\leq 2* exp(\frac{-2*n*(\epsilon)^2}{(b-a)^2})$
+
+set $\delta = 2* exp(\frac{-2*n*(\epsilon)^2}{(b-a)^2}) $
+
+we get
+$\epsilon = \pm \sqrt[2]{\frac{\log(2/\delta)*(b-a)^2}{2*n}}$
+
+we set b=1, a = 0, and $\mu = \frac{k}{n}$,
+then we have
+[L,R] = $[\frac{k}{n}-\sqrt{\frac{\log(2/\delta)}{2*n}}, \frac{k}{n}+\sqrt{\frac{\log(2/\delta)}{2*n}}]$
+
+And this proves that
+$P[\frac{k}{n}-\sqrt{\frac{\log(2/\delta)}{2*n}}<$ generalization error  $<\frac{k}{n}+\sqrt{\frac{\log(2/\delta)}{2*n}}]\geq 1-\delta$
+    
+    
+\subsection*{Solution to Part (b)}
+
+\indent
+
+If we plug in k=0, we get
+
+$[-\sqrt{\frac{\log(2/\delta)}{2*n}},\sqrt{\frac{\log(2/\delta)}{2*n}}]$
+    
+    
+\subsection*{Solution to Part (c)}
+
+\indent
+
+when k = 0, the equation for L' would always be 1 since it always adds up to the total probability. So infimum value for p $\in [0,1]$ would be 0.
+
+when k = 0, the equation for R' is $(1-p)^n$, then we have
+
+$(1-p)^n > \delta/2$
+
+$p < 1 - \sqrt[n]{\delta/2}$
+
+so, we have L' = 0 and R' = $1-\sqrt[n]{\delta/2}$
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+we know that [L,R] = $[\frac{k}{n}-\sqrt{\frac{\log(2/\delta)}{2*n}}, \frac{k}{n}+\sqrt{\frac{\log(2/\delta)}{2*n}}]$ and [L',R'] = [0,$1-\sqrt[n]{\delta/2}$], if we plug in the values we get
+
+[L,R] = [-0.192, 0.192]
+
+[L',R'] = [0, 0.0711]
+
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+we are trying to prove that [L', R'] $\subset$ [L,R], this means that we want to prove that any element in [L', R'] is in [L,R]. And we can prove this by showing that L'$\geq $L and R' $\leq$ R.
+
+0 would always be greater than or equal to another negative value, so the equation $0\geq -\sqrt{\frac{\log(2/\delta)}{2*n}}$ would always be true and it proves trivially that L'$\geq $L.
+
+For R' $\leq$ R, we have inequality
+$1-\sqrt[n]{\delta/2} \leq \sqrt{\frac{\log(2/\delta)}{2*n}}$
+
+set A = $\frac{1}{n} * \log(\delta/2)$
+
+left-hand-side = $1-e^{A}$, right-hand-side = $-\sqrt{\frac{A}{2}}$ 
+
+we know that A$\geq\sqrt{\frac{A}{2}}$, and this means that -A$\leq-\sqrt{\frac{A}{2}}$. we know that 1+A $\leq e^A$, we can transform the left-hand-side to be a bigger value, left-hand-side = 1-(1+A) = -A. If we can prove this bigger value is smaller than or equal to the right-hand-side, it suffices to show that the original smaller left-hand-side is also smaller than or equal to the right-hand-side. And since we know that -A$\leq-\sqrt{\frac{A}{2}}$, we can conclude that $1-e^{A} \leq -\sqrt{\frac{A}{2}}$.
+
+As we plug in the value A = $\frac{1}{n} * \log(\delta/2)$, we get that $1-\sqrt[n]{\delta/2} \leq \sqrt{\frac{\log(2/\delta)}{2*n}}$, and this completes the proof that [L', R'] $\subset$ [L,R].
+
+
+\section*{Solution to Question 3}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+We need to perform an exhaustive search over subsets of training set, which has size of n. We need at most 4 corner points to get a rectangle in this example, where the dimension is 2. For x-dimension, there are $n^2$ pairs of (a,b), for y-dimension, there are $n^2$ pairs of (c,d). so in total, we have $n^4$ possible (a,b,c,d) pairs. For each of these (a,b,c,d) pair, we calculate the training loss with equation: $\frac{|\{i\in [n]: h(x_i, y_i)\neq l_i\}|}{n}$. Then we find the rectangle that outputs the smallest training loss, and return the (a,b,c,d) pair for that rectangle as our algorithm output. Since calculating the training loss is O(n), this naive approach would take O($n*n^4$), which is O($n^5$). 
+
+Another idea is to use dynamic programming, where we can get the training loss of rectangle with corners (a+1, b+1, c, d), from corners (a,b,c,d) and corners (a,b,c+1, d+1). In this case, we calculate the training loss for corners ($a_{minimum}$, $b_{minimum}$,c,d), where c,d are iterated from minimum value to the maximum value. This process take O($n*n^2$), which is O($n^3$). And then we can calculate the loss for the rest of the ($n^2-1$)*$n^2$ rectangles. Each loss calculation costs O(1). So in total, this approach would cost O($n^3$+$n^4$), which is O($n^4$). [Reference: Understanding Machine Learning: From Theory to Algorithms, page 78, page 83.]
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+This question assumes that there exists a rectangle bound with zero training error. For the training sample, S = {$(x_1, y_1)...(x_m,y_m)$}, there exists an axis aligned rectangle $h\in H_2$, for which $h(x_i)=y_i$ $\forall i$. And we need to find the maximum values of b,d in the x,y dimension respectively, and find the minimum values of a,c in the x,y dimension respectively. In other words, we need to find the following:
+
+$a = min\{ x_i | \exists y_j, (x_i, y_j, 1)\in S \}$
+
+$b = max\{ x_i | \exists y_j, (x_i, y_j, 1)\in S \}$
+
+$c = min\{ y_i | \exists x_j, (x_j, y_i, 1)\in S \}$
+
+$d = max\{ y_i | \exists x_j, (x_j, y_i, 1)\in S \}$
+
+The run time for finding each of the above is O(n), since we need to go through the entire sample. The total run time of this algorithm will be O(4*n), which is O(n). This algorithm would label positively all the positive instances in the training set. Since we have the realizable assumption and trying to find the tightest rectangle bound, all the negative instances are also labeled correctly. We have an ERM algorithm. [Reference: Understanding Machine Learning: From Theory to Algorithms, page 77, page 78.]
+
+\end{document}
