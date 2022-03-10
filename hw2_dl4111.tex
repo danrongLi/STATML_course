@@ -1,0 +1,288 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[usenames,svgnames]{xcolor}
+\usepackage[pdftex,
+            colorlinks=true,
+            linkcolor=NavyBlue,
+            citecolor=NavyBlue,
+            urlcolor=NavyBlue,
+            breaklinks=true]{hyperref}
+
+\title{Solution for Homework \#2}
+
+\author{Danrong Li\\
+\href{dl4111@nyu.edu}{dl4111@nyu.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Solution to Question 1}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+\begin{enumerate}
+    \item since $x\leq x$, $y\leq y$, we proved that (x,y)$\preceq$(x,y).
+    \item if $x\leq$x', y$\leq$y', x'$\leq$x, and y'$\leq$y, then we have x=x' and y=y'. This proves that (x,y) = (x',y').
+    \item if x$\leq$x', y$\leq$y', x'$\leq$x'', and y'$\leq$y'', then it indicates that x$\leq$x'' and y$\leq$y''. And it proves that (x,y)$\preceq$(x'',y'').
+\end{enumerate}
+
+\subsection*{Solution to Part (b)} 
+
+\indent
+
+if (x,y), (x',y') $\in$ S, , x $<$ x', y $<$ y', then H does not shatter S. Since we cannot only just select (x',y'), so we can conclude that H not shattering S.
+
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+$|$S$|$ = 2
+
+(x,y),(x',y') $\in$ S, such that x $>$ x' and y' $>$ y. We can shatter both the points, or only one of the points, or none of the points.
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+d = 2
+
+we need to prove that any set of 3 or more points in $\mathbf{R}^2$ is not shattered by H. Since the linear dimension of $\mathbf{R}^2$ is 2, then for any vectors of size 3, there exists coefficients $a_1$, $a_2$, $a_3$, not all 0, such that, $\Sigma_{i=1}^{3}a_i*x_i=0$. The $x_i$ are linearly dependent. There is at least 1 positive and at least 1 negative $a_i$. 
+
+I = {$x_i\in S:a_i>0$}
+
+J = {$x_i\in S: a_i\leq 0$}
+
+A = $\Sigma_{x_i\in I}a_i$, we can see that A $>$ 0
+
+$\Sigma_{x_i\in I}a_i$ + $\Sigma_{x_i\in J}a_i$ = 0 $==>$ A + (-A) = 0
+
+We find point p in the intersection of convex hull of I and J.
+
+p = $\Sigma_{x_i\in I} \frac{a_i}{A}*x_i$ = $\Sigma_{x_i\in J}\frac{-a_i}{A}*x_i$
+
+$\Sigma_{x_i\in I}\frac{a_i}{A}$ = 1 = $\Sigma_{x_i\in J}\frac{-a_i}{A}$
+
+so, p is a convex combination of points in I, and p is a convex combination of points in J. The convex hulls intersect. And since convex hulls intersect, we know that there cannot exist a h $\in$ H that h$\cap$S = I, and $h^c\cap S$ = J, and this indicates that there does not exist h $\in$ H that shatters this created S with 3 points. And this also means that any set with 3 points or more will not be shattered by H.
+
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+Since we know H can shatter a set with size 2, H cannot shatter a set of size 3 or more, then we know that VC(H) = 2.
+
+\section*{Solution to Question 2}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+VC(G) = $d_1$, VC(H) = $d_2$
+
+According to the inequality of union of growth functions, $\Pi_{F}(m)\leq\Pi_{G}(m)+\Pi_{H}(m)$
+
+According to Sauer lemma, 
+
+$\Pi_F(m)\leq \Sigma_{i=0}^{d_1}\binom{m}{i}+\Sigma_{i=0}^{d_2}\binom{m}{i}$
+
+$\leq \Sigma_{i=0}^{d_1}\binom{m}{i}+\Sigma_{i=0}^{d_2}\binom{m}{m-i}$ (Pascal Triangle Property)
+
+$\leq \Sigma_{i=0}^{d_1}\binom{m}{i}+\Sigma_{i=m-d_2}^{m}\binom{m}{i}$ (Replace m-i with i)
+
+we know the exponential upper bound for $\Pi_F(m)$ is $\Pi_F(m)\leq 2^{m}$, in order to make the above equation $\leq 2^{m}$, we need to set $m-d_2\leq d_1+1$, then we got
+
+$\Pi_F(m) \leq \Sigma_{i=0}^{d_1}\binom{m}{i}+\Sigma_{i=m-d_2}^m\binom{m}{i}$
+
+$\leq \Sigma_{i=0}^m \binom{m}{i}$ = $2^m$
+
+Thus, $m-d_2\leq d_1+1$, $m\leq d_1+d_2+1$
+
+Since we know that VC(F)$\leq$ m, we can conclude that VC(F)$\leq$ VC(G)+VC(H)+1.
+    
+\subsection*{Solution to Part (b)}
+
+\indent
+
+We can construct sets G,H such that:
+
+$G\cap\{1,2,3,4\}$ = $\{\{1\}, \{2\}, \{3\}, \{4\}, \{1,2\}, \{1,3\}, \{1,4\}, \{2,3\}, \{2,4\}, \{3,4\}, \emptyset\}$
+
+$H\cap\{1,2,3,4\}$ = $\{\{1\}, \{2\}, \{3\}, \{4\}, \emptyset\} $
+
+(G$\cup$H)$\cap\{1,2,3,4\}$ = $\{\{1\}, \{2\}, \{3\}, \{4\}, \{1,2\}, \{1,3\}, \{1,4\}, \{2,3\},$ 
+
+$\{2,4\}, \{3,4\}, \{1,2,3\}, \{1,2,4\}, \{1,3,4\}, \{2,3,4\}, \{1,2,3,4\}, \emptyset\}$
+
+According to the sets we construct: VC(G) = 2, VC(H) = 1, VC(G $\cup$ H) = 4 = 2+1+1
+    
+    
+\subsection*{Solution to Part (c)}
+
+\indent
+
+$\Pi_F(m)\leq (\Pi_H(m))^k$
+
+$\leq (\Sigma_{i=0}^d\binom{m}{i})^k$ (Sauer Lemma)
+
+$\leq (\frac{em}{d})^{dk}$
+
+we know that $\Pi_F(m) \leq 2^m$ and it means that $(\frac{em}{d})^{dk}\leq 2^m$
+
+we need to show that this inequality holds when $m\leq 2dk\log_2(2dk)$.
+
+By substituting m, we get the following:
+
+$(\frac{e*2dk\log_2(2dk)}{d})^{dk}\leq 2^{2dk\log_2(2dk)}=(2^{2log_2(2dk)})^{dk}$
+
+$e*2k*\log_2(2dk)\leq 2^{2\log_2(2dk)}$
+
+$2*2k*\log_2(2dk)\leq 2^{\log_2(4d^2k^2)}$
+
+$log_2(2dk)\leq d^2k$
+
+And this inequality holds for any positive integer k. Also if we substitute m with value $< 2dk\log_2(2dk)$, the inequality still holds. Thus, we proved that VC(F) $\leq 2dk\log_2(2dk)$.
+
+
+
+\section*{Solution to Question 3}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+H = $\{0,1\}^{\mathbf{N}}$
+
+The vc-dimension of a hypothesis class H is the maximal size of a set c $\subset$ x, that can be shattered by H. So in this question, we have VC(H) = $\infty$.
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+H is not PAC-learnable since it has infinite vc-dimension.
+
+By utilizing the no-free-lunch theorem, let H be a hypothesis class of functions from x to {0,1}, let m be training set size. Assume that there exists a set c $\subset$ x of size 2m that is shattered by H. Then for any learning algorithm A, there exists a distribution D over x * {0,1}, and a predictor $h\in H$, such that $L_D(h)=0$, but with probability $\geq \frac{1}{7}$ over the choice of S $\sim D^m$, we have that $L_D(A(s))\geq \frac{1}{8}$. 
+
+Since H has an infinite vc-dimension, for any training set size m, there exists a shattered set of size 2m, and this means that we cannot PAC learn H using m examples. [Reference: Understanding Machine Learning: From Theory to Algorithms, page 45, page 46.]
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+suppose we have a convergent series, the reciprocals of triangular numbers produce:
+
+$\frac{1}{1}+\frac{1}{3}+\frac{1}{6}+\frac{1}{10}+\frac{1}{15}+\frac{1}{21}+...=2$
+
+we can set D(B) = $\Sigma_{x\in B}D(\{x\})$ = sum of a finite set of the reciprocals of triangular numbers. since we know that the sum of them will converge, according to wikipedia, we know:
+
+$|S_n-l|<\epsilon$
+
+$|D(B)-2|<\epsilon$
+
+2 - D(B) $<\epsilon$
+
+D(B) $> 2-\epsilon \geq 1-\epsilon$
+
+Thus, we can say that there exists a finite subset $B\subset \mathbf{N}$, such that D(B) $\geq 1-\epsilon$.
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+1. we can use union bound to get a upper bound for the limit.
+
+\vspace{3mm}
+
+if $|B| = 1$, B = $\{2\}$,
+
+Pr[B $\subseteq \{x_1, x_2,...x_m\}$]
+
+= Pr[2$\in \{x_1, x_2,...x_m\}$]
+
+= Pr[$\cup_{i=1}^{m}2=x_i$]
+
+$\leq \Sigma_{i=1}^{m}Pr[2=x_i]$
+
+= $m*\frac{1}{m}*\frac{m}{|\mathbf{N}|}$
+
+For general case, 
+
+Pr[B $\subseteq \{x_1, x_2,...x_m\}$]
+
+= $(Pr[b\in \{x_1, x_2,...x_m\}])^{|B|}$
+
+$\leq$ $(m*\frac{1}{m}*\frac{m}{|\mathbf{N}|})^{|B|}$
+
+$\lim_{m\to\infty}(m*\frac{1}{m}*\frac{m}{|\mathbf{N}|})$ = 1
+
+Thus, we can see that as m goes to $\infty$, the probability goes to 1.
+
+\vspace{3mm}
+
+2. we can use union bound to get a lower bound for the limit.
+
+Pr[B$\subseteq \{x_1,x_2,...x_m\}$]
+
+= 1 - Pr[$\cup_{i=1}^{|B|}b\notin\{x_1,...x_m\}$]
+
+$\geq 1-\Sigma_{i=1}^{|B|}$Pr[$b\notin\{x_1,...x_m\}$]
+
+Then we consider the second part of the above inequality as m goes to $\infty$:
+
+$\lim_{m\to\infty}\Sigma_{i=1}^{|B|}$Pr[b$\notin\{x_1,...x_m\}$]
+
+= $|B|*\lim_{m\to\infty}$Pr[$b\notin\{x_1,...x_m\}$]
+
+= $|B|*\lim_{m\to\infty}(1-D(b))^m$
+
+= 0
+
+Thus, we substitute back to the previous inequality, we get:
+
+$\lim_{m\to\infty}$Pr[$B\subseteq\{x_1,x_2,...x_m\}$] $\geq 1-0$ = 1.
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+Pr[B$\subseteq \{x_1,x_2,...x_m\}$] = 1, as m goes to $\infty$, it means that
+Pr[B$\subseteq \{x_1\}$] + Pr[B$\subseteq\{x_2\}$] + ... is a convergent series, and this means that $|S_n-l|<\delta$.
+
+1 - $\Sigma_{i=1}^{m}Pr[B\subseteq\{x_1,...x_m\}]<\delta$
+
+$\Sigma_{i=1}^{m}Pr[B\subseteq\{x_1,...x_m\}]>1-\delta$
+
+$err_{D,h^*}(A(s))$ = $\frac{|\{i\in [m]: A(s)(x_i)\neq h^*(x_i)\}|}{m}$
+
+= D($\{x:A(s)(x)\neq h^*(x)\}$) $\geq 1-\epsilon$
+
+P($err_{D,h^*}(A(s)) < \epsilon$) = $\Sigma_{i=1}^{m}Pr[B\subseteq \{k_1,...k_i\}] > 1-\delta$
+
+where $k_i$ = 1, if $A(s)(x_k)$ = $h^*(x_k)$, and  $k_i$ = 0 otherwise.
+
+
+\subsection*{Solution to Part (f)}
+
+\indent
+
+Part(b) says that H is not PAC-learnable. Then for any learning algorithm A, there exists a distribution D over X*$\{0,1\}$, and a predictor $h\in H$, st. $L_D(h)$ = 0, but with probability $\geq\frac{1}{7}$, over the choice of S $\sim$ $D^m$, we have that $L_D(A(s))\geq\frac{1}{8}$.
+
+Pr[$err_{D,h^*}(A(s))\geq\epsilon$] $\geq\delta$
+
+Pr[$err_{D,h^*}(A(s))<\frac{1}{8}$] $<1-\delta$
+
+This contradicts with part(e), Pr[$err_{D,h^*}(A(s))\leq\epsilon$] $\geq 1-\delta$, with $\epsilon = \frac{1}{8}$
+
+\end{document}
+
