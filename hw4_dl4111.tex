@@ -1,0 +1,307 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[usenames,svgnames]{xcolor}
+\usepackage[pdftex,
+            colorlinks=true,
+            linkcolor=NavyBlue,
+            citecolor=NavyBlue,
+            urlcolor=NavyBlue,
+            breaklinks=true]{hyperref}
+
+\title{Solution for Homework \#4}
+
+\author{Danrong Li\\
+\href{dl4111@nyu.edu}{dl4111@nyu.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Solution to Question 1}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+2(a(1-b)+(1-a)b) = 2(a-ab+b-ab) = 2(a+b) = 2a+2b
+
+since $0\leq b\leq \frac{1}{2}$, $2a\leq 2a+2b\leq 2a+1$, we know $a\leq 2a$, so $a\leq 2a+2b$ = 2(a-ab+b-ab)
+
+in the case where $\frac{1}{2}\leq b\leq 1$, we get $2a+1\leq 2a+2b\leq 2a+2$. since a in interval [0,1], $1\leq 2a+1\leq 3$, and $0\leq 1-a\leq 1$. so $1-a\leq 2a+1\leq 2a+2b$ = 2(a-ab+b-ab)
+
+\subsection*{Solution to Part (b)} 
+
+\indent
+
+case 1, Y=0, p=1, Pr[$\widehat{Y}=1$] $>\frac{1}{2}$ 
+
+set a = Pr[Y=1], b = Pr[$\widehat{Y}=1$]
+
+using the result from previous question, we get
+
+1 - Pr[Y=1] $\leq 2\times (Pr[Y=1]\times (1-Pr[\widehat{Y}=1])+(1-Pr[Y=1])\times Pr[\widehat{Y}=1]$)
+
+Pr[Y=0] $\leq 2\times (Pr[Y=1]\times Pr[\widehat{Y}=0]+Pr[Y=0]\times Pr[\widehat{Y}=1])$
+
+which means $Pr[Y\neq p]\leq 2Pr[Y\neq \widehat{Y}]$
+
+\vspace{2mm}
+
+case 2, Y=1, p=0, Pr[$\widehat{Y}=1$] $\leq \frac{1}{2}$
+
+set a = Pr[Y=1], b = Pr[$\widehat{Y}=1$]
+
+using the equation from previous question, we get
+
+Pr[Y=1] $\leq 2\times (Pr[Y=1]\times (1-Pr[\widehat{Y}=1])+(1-Pr[Y=1]\times Pr[\widehat{Y}=1]))$
+
+Pr[Y=1] $\leq 2\times (Pr[Y=1]\times Pr[\widehat{Y}=0]+Pr[Y=0]\times Pr[\widehat{Y}=1])$
+
+which means $Pr[Y\neq p]\leq 2Pr[Y\neq \widehat{Y}]$
+
+\vspace{2mm}
+
+from these 2 cases, we proved this question.
+
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+E[Y] = E[$\widehat{Y}$] = $\frac{1}{2}$
+
+$Pr[Y=0]\times 0+Pr[Y=1]\times 1$ = E[Y] = $\frac{1}{2}$
+
+so Pr[Y=1] = $\frac{1}{2}$, and Pr[Y=0] = 1 - $\frac{1}{2}$ = $\frac{1}{2}$
+
+similarly, we get Pr[$\widehat{Y}=1$] = Pr[$\widehat{Y}=0$] = $\frac{1}{2}$
+
+\vspace{2mm}
+
+case 1, Y=0, p=1, Pr[$\widehat{Y}=1$] $>\frac{1}{2}$
+
+Pr[Y=0] = $\frac{1}{2}$
+
+Pr[$Y\neq \widehat{Y}$] = Pr[Y=0, $\widehat{Y}=1$] = $\frac{1}{2}\times \frac{1}{2}$ = $\frac{1}{4}$
+
+Pr[$Y\neq p$] = Pr[Y=0] = 2 $\times$ Pr[Y$\neq\widehat{Y}$]
+
+\vspace{2mm}
+
+case 2, Y=1, p=0, Pr[$\widehat{Y}=1$] $\leq \frac{1}{2}$
+
+Pr[Y=1] = $\frac{1}{2}$
+
+Pr[Y$\neq\widehat{Y}$] = Pr[Y=1,$\widehat{Y}$=0] = $\frac{1}{2}\times\frac{1}{2}$ = $\frac{1}{4}$
+
+Pr[$Y\neq p$] = Pr[Y=1] = 2 $\times$ Pr[Y$\neq\widehat{Y}$]
+
+\vspace{2mm}
+
+from the 2 cases above, we proved this question.
+
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+using the results from previous questions, let $\widehat{Y}$ = r(x,Z), let h(x) = p
+
+then we get Pr[Y$\neq$p] = Pr[Y$\neq$h(x)] = $err_D(h)$
+
+Pr[$Y\neq\widehat{Y}$] = Pr[$Y\neq r(x,Z)$] = $err_D(r)$
+
+Pr[$Y\neq p$] $\leq$ 2 $\times$ Pr[Y$\neq\widehat{Y}$] suggests that  $err_D(h)\leq 2\times err_D(r)$
+
+
+\section*{Solution to Question 2}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+we know that $H_4$ = $\{h_{i,j}:1\leq i < j \leq 4\}$ = $\{h_{1,2},h_{1,3},h_{1,4},h_{2,3},h_{2,4},h_{3,4}\}$, $H_5$ = $\{h_{i,j}:1\leq i < j \leq 5\}$ = $\{h_{1,2},h_{1,3},h_{1,4},h_{1,5},h_{2,3},h_{2,4},h_{2,5},h_{3,4},h_{3,5}\}$ ...
+
+we can construct the following:
+
+
+\includegraphics[scale=0.3]{images/hw4_2a.PNG}
+
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+initialize $G_1$ = H
+
+for t = 1,2,3...
+
+1. receive $x_t\in X$
+
+2. split $G_t$ into 
+
+\hspace{2mm} $G_t^0$ = $\{h\in G_t:h(G_t) = 0\}$
+
+\hspace{2mm} $G_t^1$ = $\{h\in G_t:h(G_t) = 1\}$
+
+3. predict $\widehat{y_t}$ = 0
+
+4. receive $y_t\in\{0,1\}$
+
+5. remove inconsistent classifier
+
+\hspace{2mm} $G_{t+1}$ = $G_t^{y_t}$
+
+this algorithm will make at most 1 mistake before knowing the index i of $h^*$ and then at most 1 mistake before figuring out index j of $h^*$. so in total at most 2 mistakes are made.
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+from question a, we know Ldim($H_n$) $\geq 2$, because Ldim(H) is the maximal integer T st, there exists a shattered tree of depth T, which is shattered by H. And question a suggests that T $\geq$ 2.
+
+from question b, we know  Ldim($H_n$) $\leq 2$, since we know no algorithm can have a mistake bound satisfy smaller than Ldim(H), which means that for every algorithm A, we have $M_A(H)\geq$ Ldim(H). And question b suggests that $M_A(H)\leq 2$, in other words, $2\geq M_A(H_n)\geq$ Ldim($H_n$).
+
+so we conclude Ldim($H_n$) = 2.
+
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+in Halving algorithm, after receiving $x_t\in X$, we split $G_t$ into 
+
+$G_t^0$ = $\{h\in G_t:h(G_t) = 0\}$
+
+$G_t^1$ = $\{h\in G_t:h(G_t) = 1\}$
+
+$|G_t|$ = $\binom{n}{2}$ = $\frac{n(n-1)}{2}$
+
+$|G_t^1|$ = n-1
+
+$|G_t^0|$ = ($\frac{n}{2}-1$)(n-1) = $\frac{(n-2)(n-1)}{2}$ = $\binom{n-1}{2}$
+
+then during the prediction phase, we will notice that $\widehat{y_t}$ = 0 all the time since $|G_t^0|\geq |G_t^1|$ all the time. then we receive $y_t\in \{0,1\}$, and remove the inconsistent classifier $G_{t+1}$ = $G_t^{y_t}$
+
+the largest number of mistake Halving algorithm can make is also 2 since it is similar to the algorithm in question b.
+
+
+\section*{Solution to Question 3}
+
+\indent
+
+we know the following equations from ada-boost:
+
+$D_{t+1,i} = \frac{D_{t,i}\times e^{-\alpha_t y_i h_t(x_i)}}{Z_t}$
+
+with $Z_t$ = $\Sigma_{i=1}^m D_{t,i} \times e^{-\alpha_t y_i h_t(x_i)}$
+
+$\epsilon_t$ = $\Sigma_{i=1}^m D_{t,i}\times 1_{y_i\neq h_t(x_i)}$
+
+we want to prove that $\Sigma_{i=1}^m D_{t+1,i}\times 1_{y_i\neq h_t(x_i)}$ = $\frac{1}{2}$
+
+inside the left-hand-side of the equation, we substitute $D_{t+1,i}$, and get new left-hand-side as: 
+
+$\Sigma_{i=1}^m \frac{D_{t,i}\times e^{-\alpha_t y_i h_t(x_i)}}{Z_t}\times 1_{y_i\neq h_t(x_i)}$
+
+then we focus on $Z_t$
+
+$Z_t$ = $\Sigma_{i=1}^m D_{t,i} \times e^{-\alpha_t y_i h_t(x_i)}$ = $\Sigma_{i:y_i=h_t(x_i)}D_{t,i}\times e^{-\alpha_t}$ + $\Sigma_{i:y_i\neq h_t(x_i)}D_{t,i}\times e^{\alpha_t}$ 
+
+= $e^{-\alpha_t}\times (1-\epsilon_t)$ + $e^{\alpha_t}\times (\epsilon_t)$
+
+substitute $\alpha_t$ = $\frac{1}{2}\times \ln(\frac{1-\epsilon_t}{\epsilon_t})$
+
+$Z_t$ = $2\times \sqrt{\epsilon_t(1-\epsilon_t)}$
+
+thus left-hand-side becomes: $\Sigma_{i=1}^m \frac{D_{t,i}\times e^{-\alpha_t y_i h_t(x_i)}}{2\times \sqrt{\epsilon_t(1-\epsilon_t)}}\times 1_{y_i\neq h_t(x_i)}$
+
+=$\frac{1}{2\times \sqrt{\epsilon_t(1-\epsilon_t)}}\times \Sigma_{i=1}^m D_{t,i}\times e^{-\alpha_t y_i h_t(x_i)}\times 1_{y_i\neq h_t(x_i)}$
+
+note that $\Sigma_{i=1}^m D_{t,i}\times e^{-\alpha_t y_i h_t(x_i)}\times 1_{y_i\neq h_t(x_i)}$ = $\Sigma_{i:y_i\neq h_t(x_i)}D_{t,i}\times e^{\alpha_t}$ = $e^{\alpha_t}\times \epsilon_t$ = $\sqrt{\epsilon_t(1-\epsilon_t)}$
+
+thus, left-hand-side = $\frac{1}{2\times \sqrt{\epsilon_t(1-\epsilon_t)}}\times \sqrt{\epsilon_t(1-\epsilon_t)}$ = $\frac{1}{2}$ = right-hand-side
+
+
+\section*{Solution to Question 4}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+the following 7 $h\in H_{half spaces}$ satisfy the requirements:
+
+$h_1$ = sign($x_1-a$)
+
+$h_2$ = sign(b-$x_1$)
+
+$h_3$ = sign($x_2-c$)
+
+$h_4$ = sign(d-$x_2$)
+
+$h_5$ = -1
+
+$h_6$ = -1
+
+$h_7$ = -1
+
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+from the requirements in a, we get
+
+E[$h(x_1,x_2)h_1(x_1.x_2)+h(x_1,x_2)h_2(x_1,x_2)+...+h(x_1,x_2)h_7(x_1,x_2)$] $\geq 1$
+
+E[$\Sigma_{i=1}^7 h(x_1,x_2)h_i(x_1,x_2)$] $\geq 1$
+
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+we prove by contradiction.
+
+if for any $h\in H_{rectangle}$, $\forall h\:'\in H_{half space}$, E[$h(x_1,x_2)h\:'(x_1,x_2)$] $<\frac{1}{7}$
+
+then for any $h\in H_{rectangle}$, $\forall h\:'\in H_{half space}$, E[$\Sigma_{i=1}^7 h(x_1,x_2)h_i (x_1,x_2)$] $<\frac{1}{7}\times 7$ = 1, which contradicts question b. And this means that for any $h\in H_{rectangle}$, there must exists $h\:'\in H_{half space}$ that E[$h(x_1,x_2)h\:'(x_1,x_2)$] $\geq \frac{1}{7}$
+
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+from question c, we know that for any $h\in H_{rectangle}$, there must exists $h\:'\in H_{half space}$ that E[$h(x_1,x_2)h\:'(x_1,x_2)$] $\geq \frac{1}{7}$, and this means that for any $h\in H_{rectangle}$, there must exists $h\:'\in H_{half space}$ that
+
+$1\times Pr[h(x_1,x_2)=h\:'(x_1,x_2)]-1\times Pr[h(x_1,x_2)\neq h\:'(x_1,x_2)]\geq \frac{1}{7}$
+
+$Pr[h(x_1,x_2)\neq h\:'(x_1,x_2)]\leq Pr[h(x_1,x_2)=h\:'(x_1,x_2)]-\frac{1}{7}$
+
+$2\times Pr[h(x_1,x_2)\neq h\:'(x_1,x_2)]\leq \frac{6}{7}$
+
+$Pr[h(x_1,x_2)\neq h\:'(x_1,x_2)]\leq \frac{3}{7}$
+
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+from question d, we know there exists $h\;'\in H_{half space}$ st $Pr[h(x_1,x_2)\neq h\:'(x_1,x_2)]\leq \frac{3}{7}$. we also know that VCdim($H_{half space}$) = 3 since it is not homogeneous and VCdim($H_{rectangle}$) = 4. if we set $\delta$ = 0.1, $\epsilon$ = $\frac{1}{28}$, from agnostic PAC definition, with m $\geq m_H(\epsilon,\delta)$, we have with probability at least 1-$\delta$ = 0.9,
+
+$err_{D,h}(A(s))\leq min_{h\;'\in H_{half space}}err_{D,h}(h\;')$ + $\epsilon$ $\leq \frac{3}{7}+\frac{1}{28}$ = $\frac{13}{28}$
+
+In addition, from lecture slide, we know that m $\geq$ max($\frac{8\ln(\frac{2}{\delta})}{\epsilon^2},\frac{16\ln(2)}{\epsilon^2},\frac{64\ln((\frac{128e}{\epsilon^2})^2)}{\epsilon^2}$)
+
+
+
+\end{document}
+

@@ -1,0 +1,377 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[usenames,svgnames]{xcolor}
+\usepackage[pdftex,
+            colorlinks=true,
+            linkcolor=NavyBlue,
+            citecolor=NavyBlue,
+            urlcolor=NavyBlue,
+            breaklinks=true]{hyperref}
+
+\title{Solution for Homework \#3}
+
+\author{Danrong Li\\
+\href{dl4111@nyu.edu}{dl4111@nyu.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Solution to Question 1}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+VC(H) = 1
+
+The largest shattered set is of size 1. The set of size 2 cannot be shattered. This is because if we only want to select the larger element out of the 2 elements, we cannot achieve this. Whenever we tried to select the larger element, the smaller element is always selected. So the set of size 2 cannot be shattered. The set of size 1 can be shattered, since we can just select or not select the element. Thus, VC(H) = 1.
+
+
+\subsection*{Solution to Part (b)} 
+
+\indent
+
+From class, we got the following corollary:
+
+let D be a distribution over X, let H $\subseteq$ O(X), let d = VC(H), let $\epsilon, \delta \in$ (0,1), let S be an iid sample from D of size m, with probability at least 1 - $\delta$, S is an $\epsilon$-approximation provided m $\geq$ max($\frac{2\ln(\frac{2}{\delta})}{\epsilon^2}$, $\frac{4\ln(2)}{\epsilon^2}$, $\frac{16d\ln((\frac{32e}{\epsilon^2})^2)}{\epsilon^2}$)
+
+In this question, as the sample size goes to infinity, the probability of $S_n$ being $\epsilon$-approximation for H,D goes to 1, which indicates $\lim_{n\to \infty}$ Pr[$S_n$ is an $\epsilon$-approximation for H,D] = 1
+
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+$F_n(x)$ = $\frac{1}{n}\times\sum^{n}_{i=1}1[X_i\leq x]$
+
+= $\frac{|X_i\in S_n: X_i \leq x|}{n}$
+
+consider H as $G(H)$, with g(H) $\in$ G(H)
+
+= $\frac{|S_n\cap g(H)|}{n}$
+
+= 1 - $\frac{|S_n\cap g^c(H)|}{n}$
+
+F(x) = $Pr_{X\sim D}[X\leq x]$
+
+= D($\{X_i\in S_n: X_i\leq x\}$)
+
+= D(g(H))
+
+= 1 - D($g^c(H)$)
+
+$|F_n(x)-F(x)|$ = $|$1 - $|$$\frac{S_n\cap g^c(H)}{n}$$|$ - (1 - D($g^c(H)$))$|$
+
+= $|1-\frac{|S_n\cap g^c(H)|}{n}-1+D(g^c(H))|$
+
+= $|D(g^c(H))-\frac{|S_n\cap g^c(H)|}{n}|$
+
+= $|err_D(H)-\widehat{err}_{S_n}(H)|$
+
+$\leq \epsilon$ because $S_n$ is $\epsilon$-approximation for H,D
+
+Since we got $|F_n(x)-F(x)|\leq\epsilon$ true for all $x\in\mathbb{R}$, we got $sup_{x\in\mathbb{R}}|F_n(x)-F(x)|\leq \epsilon$
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+From (b), we know $\lim_{n\to\infty}$ Pr[$S_n$ is an $\epsilon$-approximation for H,D] = 1
+
+From (c), we know if $S_n$ is $\epsilon$-approximation for H,D, then $sup_{x\in\mathbb{R}}|F_n(x)-F(x)|\leq \epsilon$
+
+Thus, we got A implies B, and if A is true as n goes to infinity, then we can conclude that B is also true as n goes to infinity, which means that $\lim_{n\to\infty}$ Pr[$sup_{x\in\mathbb{R}}|F_n(x)-F(x)|\leq \epsilon$] = 1
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+\includegraphics[scale=0.6]{images/hw3_1e.png}
+
+
+\section*{Solution to Question 2}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+$f_P(x)$ = 1, if $0\leq x\leq 1$, $f_P(x)$ = 0, otherwise
+
+$f_Q(y)$ = 1, if $0\leq y\leq 1$, $f_Q(y)$ = 0, otherwise
+
+since X,Y are two independent samples, we got
+
+f(x,y) = 1, if $0\leq x,y\leq 1$, f(x,y) = 0, otherwise
+
+Pr(x$>$y) = $\int^1_0\int^1_y f(x,y) dx dy$
+
+= $\int^1_0[x]^1_y dy$
+
+= $\int^1_0(1-y)dy$
+
+= [y-$\frac{1}{2}y^2$]$^1_0$
+
+= 1-$\frac{1}{2}$
+
+= $\frac{1}{2}$
+
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+P: uniform distribution [0, $\frac{3}{2}$]
+
+Q: uniform distribution [0, 1]
+
+$f_P(x)$ = $\frac{2}{3}$, if $0\leq x\leq \frac{3}{2}$, $f_P(x)$ = 0, otherwise
+
+$f_Q(y)$ = 1, if $0\leq y\leq 1$, $f_Q(y)$ = 0, otherwise
+
+since X,Y are two independent samples, we got
+
+f(x,y) = $\frac{2}{3}$, if $0\leq x,y\leq 1$, f(x,y) = 0, otherwise
+
+Pr(x$>$y) = $\int^1_0\int^{\frac{3}{2}}_y f(x,y) dx dy$
+
+= $\int^1_0[\frac{2}{3}x]^{\frac{3}{2}}_y dy$
+
+= $\int^1_0 1-\frac{2}{3}y dy$
+
+= $[y-\frac{1}{3}y^2]^1_0$
+
+= $\frac{2}{3}$
+    
+    
+\subsection*{Solution to Part (c)}
+
+\indent
+
+E[B] = E[$\frac{\Sigma_{x\in X}\Sigma_{y\in Y}1[x>y]}{mn}$]
+
+= $Pr[X>Y]\times 1+Pr[X\leq Y]\times 0$
+
+= $Pr[X>Y]$
+
+= $a_{P,Q}$
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+We want to prove 
+$Pr[|B-E[B]|\geq\epsilon]\leq 2\times e^{-2mn\epsilon^2/(m+n)}$
+
+B = $\frac{\Sigma_{x\in X}\Sigma_{y\in Y}1[x>y]}{mn}$ = f($X_1,...X_n,Y_1,...Y_m$)
+
+we can change 1 variable in X or in Y.
+
+if we change the variable in X, $|B-B\;'|\leq\frac{m}{mn}$, and $c_x=\frac{1}{n}$
+
+if we change the variable in Y, $|B-B\;'|\leq\frac{n}{mn}$, and $c_y=\frac{1}{m}$
+
+$\Sigma c_i^2$ = $(\frac{1}{n})^2\times n+(\frac{1}{m})^2\times m$
+
+= $\frac{n}{n^2}+\frac{m}{m^2}$
+
+= $\frac{1}{n}+\frac{1}{m}$
+
+= $\frac{m+n}{mn}$
+
+Thus, we got Pr[B-E[B]] $\leq$ $2\times e^{-2mn\epsilon^2/(m+n)}$
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+Algorithm 1 with O(mn) time complexity
+
+count = 0
+
+for every x $\{$
+
+    \hspace{4mm}for every y $\{$
+    
+        \hspace{6mm}if $x<y$: count += 1
+        
+    \hspace{4mm}$\}$
+    
+$\}$
+
+return count / mn
+
+\vspace{4mm}
+
+Algorithm 2 with O((m+n)log(m+n)) time complexity
+
+First sort the m+n elements in O((m+n)log(m+n)) in ascending order
+
+for element in sorted n+m elements $\{$
+
+    \hspace{4mm}total count = 0
+    
+    \hspace{4mm}current count = 0
+    
+    \hspace{4mm}if element is in X: total count += current count
+    
+    \hspace{4mm}if element is in Y: current count += 1
+
+$\}$
+
+return total count / mn
+
+
+
+\section*{Solution to Question 3}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+suppose $a_i\leq b_i$
+
+consider a set S = $\{x_1, ... x_{2d}\}$, where $x_i$ = $e_i$ if $i\in [d]$, $x_i$ = -$e_i$ if $i>d$, and $e_i\in (0,1)$
+
+$(y_1,...y_{2d})\in \{0,1\}^{2d}$
+
+let $a_i$ = -2, if $y_{i+d}$ = 1, $a_i$ = 0, otherwise
+
+let $b_i$ = 2, if $y_i$ = 1, $b_i$ = 0, otherwise
+
+$H_d(x_i)$ = $y_i$ for all i $\in [2d]$
+
+we can see that set S is shattered by $H_d$
+
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+if d = 1, the set S with size 2 can be shattered.
+
+let $x_l^S$ be the leftmost point of S
+
+let $x_r^S$ be the rightmost point of S
+
+every hyper-rectangle that captures $\{x_l^S,x_r^S\}$ captures all of S.
+
+if $|S|\geq 3$, S contains some $x^* \not\in $ $\{x_l^S,x_r^S\}$, or in other words, $x_l^S < x^* < x_l^S$. The labeling of setting $x_l^S,x_r^S$ as positive and $x^*$ as negative would be impossible to get. Thus in the situation where d = 1, no set of size of 3 is shattered by $H_d$.
+
+Then we consider that for any d, S with size 2d can be shattered.
+
+We can label the 2d points as the leftmost, rightmost, lowest, highest ... points of S, then every hyper-rectangle that captures these 2d points would capture all of S.
+
+if $|S|\geq$ 2d+1, S contains some $x^*$, which is not inside these 2d points, the labeling of setting $x^*$ as positive and the rest to be negative is impossible.
+
+Thus no set of size 2d+1 is shattered by $H_d$
+
+
+\section*{Solution to Question 4}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+we know H is non-empty.
+
+if $|H|$ = 1, VC(H) = 0
+
+H could be $\{\varnothing\}$, and H can only shatter $\varnothing$
+
+$|H|=2^0=1$
+
+if $|H|\geq 1$, VC(H) $\geq$ 0
+
+as the number of sets in H increases, VC(H) would potentially increase.
+
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+if $|H|$ = 2, H could be $\{\varnothing, \{1\}\}$, in this case, VC(H) = 1, since we can select $\{1\}$ or not select it. $|H|=2^1=2$
+
+if $|H|\geq 2$, VC(H) $\geq$ 1
+
+as the number of sets in H increases, VC(H) would potentially increase.
+
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+since we know that $H\subseteq\mathcal{P}(X)$ is a finite class of subsets of X, 
+
+$2^{VC(H)}\leq |H|$
+
+take the $\log_2$ on both sides
+
+VC(H) $\leq \log_2|H|$
+
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+when n = 1, VC($H_1$) = 1, $|H_1|=2$, $H_1 = \{\varnothing,\{1\}\}$
+
+when n = 2, VC($H_2$) = 2, $|H_2|=4$, $H_2 = \{\varnothing,\{1\},\{2\},\{1,2\}\}$
+
+when n = 3, VC($H_3$) = 3, $|H_3|=8$, $H_2 = \{\varnothing,\{1\},\{2\},\{3\},\{1,2\},\{2,3\},\{1,3\},\{1,2,3\}\}$
+
+thus, for every n $\geq 1$, we can find a finite class of subset s of natural numbers that meet the requirements by setting $H_n$ = the power set of first n elements.
+
+
+\section*{Solution to Question 5}
+
+\subsection*{Solution to Part (a)}
+
+\indent
+
+VC($H_{all}$) = $\infty$
+
+VC($H_{finite}$) = $\infty$
+
+
+\subsection*{Solution to Part (b)}
+
+\indent
+
+$\mathbb{N}$ is shattered by $H_{all}$, this is because $\Pi_{H_{all}}$ = $|\mathcal{P}(\mathbb{N})|$, which is because of $H_{all}=\mathcal{P}(\mathbb{N})$. we can find the one-to-one relationship between $\mathbb{N}$ and $H_{all}$.
+
+$\mathbb{N}$ is not shattered by $H_{finite}$, since $\Pi_{H_{finite}}(\mathbb{N}) < |\mathcal{P}(\mathbb{N})|$. we can consider the infinite set contains all elements of $\mathbb{N}$. since $H_{finite}$ cannot select sets of infinite size, the labeling of All 1 of all elements in this considered infinite set is not possible.
+
+\subsection*{Solution to Part (c)}
+
+\indent
+
+construct $H_n$ as a class of unions of at most n intervals. we know from class and book pg 46, let $H_{interval}$ be the class of intervals over $\mathbb{N}$, VC($H_{interval}$) = 2. Then VC($H_n$) = 2n, satisfying the requirement of finite VC($H_n$). To write explicitly, $H_n$ = $\{h_{a1,b1,...an,bn}:\forall i \in [n], a_i\leq b_i\}$, where $h_{a1,b1,...an,bn}(x)=\Sigma_{i=1}^n 1(x\in [a_i,b_i])$.
+
+\subsection*{Solution to Part (d)}
+
+\indent
+
+proof by contradiction. assume $\forall n$, VC($H_n$) $<\infty$.
+
+select a sequence of finite sets $A_1, A_2,...\subset \mathbb{N}$, st, $A_1, A_2,...$ are pairwise disjoint, so that $\bigcup^{\infty}_{n=1}A_n = \mathbb{N}$. Since VC($H_n$) $<\infty$, we can set VC($H_n$) $< |A_n|$, or even let $|A_n|$ = VC($H_n$) + 1. And this means that $\forall n$, $H_n$ cannot shatter $A_n$.
+
+we then select a sequence of finite sets $B_1, B_2,...\subset \mathbb{N}$, st, $B_n\subseteq A_n$. since $\forall n$, $H_n$ cannot shatter $A_n$, then we get $\exists B_n \not\in \Pi_{H_n}(A_n)$. let B = $\bigcup^{\infty}_{n=1}B_n$, then we know $B\not\in \Pi_{H_{all}}(\mathbb{N})$, however, we know from (b), $\mathbb{N}$ is shattered by $H_{all}$, and B $\subset\mathbb{N}$, so we know that the statement of $B\not\in \Pi_{H_{all}}(\mathbb{N})$ leads to contradiction.
+
+
+\subsection*{Solution to Part (e)}
+
+\indent
+
+from (d), we know that we cannot get $H_{all}$ = $\bigcup^{\infty}_{n=1}H_n$, where $\forall_{n\geq 1}$, VC($H_n$) $<\infty$. this indicates that $H_{all}$ is not uniformly learnable.
+
+\end{document}
+
